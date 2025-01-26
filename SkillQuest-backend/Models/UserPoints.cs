@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SkillQuest_backend.Models;
 
+[Table("user_points")]
 public class UserPoints
 {
     [Key]

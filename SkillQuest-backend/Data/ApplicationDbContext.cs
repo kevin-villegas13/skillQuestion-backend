@@ -16,14 +16,13 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public required DbSet<Reward> Rewards { get; set; }
     public required DbSet<UserReward> UserRewards { get; set; }
     public required DbSet<UserPoints> UserPoints { get; set; }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-
+        // Relación entre User y UserRoles (1 a muchos)
         modelBuilder.Entity<UserRole>()
-               .HasKey(ur => new { ur.UserId, ur.RoleId });
+            .HasKey(ur => new { ur.UserId, ur.RoleId });
 
         modelBuilder.Entity<UserRole>()
             .HasOne(ur => ur.User)
@@ -35,6 +34,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             .WithMany(r => r.UserRoles)
             .HasForeignKey(ur => ur.RoleId);
 
+        // Relación entre User y UserProgress (1 a muchos)
         modelBuilder.Entity<UserProgress>()
             .HasKey(up => up.ProgressId);
 
@@ -48,6 +48,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             .WithMany(l => l.UserProgress)
             .HasForeignKey(up => up.LessonId);
 
+        // Relación entre User y UserChallenges (1 a muchos)
         modelBuilder.Entity<UserChallenge>()
             .HasKey(uc => uc.UserChallengeId);
 
@@ -61,6 +62,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             .WithMany(c => c.UserChallenges)
             .HasForeignKey(uc => uc.ChallengeId);
 
+        // Relación entre User y UserRewards (1 a muchos)
         modelBuilder.Entity<UserReward>()
             .HasKey(ur => ur.UserRewardId);
 
@@ -74,6 +76,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             .WithMany(r => r.UserRewards)
             .HasForeignKey(ur => ur.RewardId);
 
+        // Relación entre User y UserPoints (1 a 1)
         modelBuilder.Entity<UserPoints>()
             .HasKey(up => up.UserId);
 
@@ -81,6 +84,29 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             .HasOne(up => up.User)
             .WithOne(u => u.UserPoints)
             .HasForeignKey<UserPoints>(up => up.UserId);
+
+        // Relación entre Role y UserRoles (1 a muchos)
+        modelBuilder.Entity<Role>()
+            .HasMany(r => r.UserRoles)
+            .WithOne(ur => ur.Role)
+            .HasForeignKey(ur => ur.RoleId);
+
+        // Relación entre Lesson y UserProgress (1 a muchos)
+        modelBuilder.Entity<Lesson>()
+            .HasMany(l => l.UserProgress)
+            .WithOne(up => up.Lesson)
+            .HasForeignKey(up => up.LessonId);
+
+        // Relación entre Challenge y UserChallenges (1 a muchos)
+        modelBuilder.Entity<Challenge>()
+            .HasMany(c => c.UserChallenges)
+            .WithOne(uc => uc.Challenge)
+            .HasForeignKey(uc => uc.ChallengeId);
+
+        // Relación entre Reward y UserRewards (1 a muchos)
+        modelBuilder.Entity<Reward>()
+            .HasMany(r => r.UserRewards)
+            .WithOne(ur => ur.Reward)
+            .HasForeignKey(ur => ur.RewardId);
     }
 }
-

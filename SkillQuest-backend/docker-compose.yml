@@ -4,10 +4,10 @@ services:
     container_name: postgres-latest
     restart: always
     environment:
-      POSTGRES_USER: username
-      POSTGRES_PASSWORD: password
-      POSTGRES_ROOT_PASSWORD: root@password
-      POSTGRES_DB: db
+      POSTGRES_USER: kevin
+      POSTGRES_PASSWORD: 123
+      POSTGRES_ROOT_PASSWORD: 123
+      POSTGRES_DB: skill-question-db
     ports:
       - "5433:5432"
 
