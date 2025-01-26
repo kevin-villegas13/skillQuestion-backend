@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SkillQuest-backend.props" />
+</Project>
