@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SkillQuest-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90cdc8a315fa0068ab8709183753391894a11664")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+70b50f53599d0f8be7a8cf392c5748ff886b6412")]
 [assembly: System.Reflection.AssemblyProductAttribute("SkillQuest-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SkillQuest-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
